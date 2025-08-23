@@ -6,7 +6,7 @@ import axios from 'axios';
 
 export const registerController = async (req, res) => {
   try {
-    const { name, email, password, phone, address, answer, defaultWalletAddress } = req.body;
+    const { name, email, password, phone, nidNumber, address, answer, defaultWalletAddress } = req.body;
     const nidFile = req.file; // Get uploaded file from multer
 
     console.log('=== REGISTRATION ATTEMPT ===');
@@ -32,6 +32,9 @@ export const registerController = async (req, res) => {
     if (!phone) {
       return res.status(400).send({ success: false, message: "Phone no is Required" });
     }
+    if (!nidNumber) {
+      return res.status(400).send({ success: false, message: "NID Number is Required" });
+    }
     if (!nidFile) {
       return res.status(400).send({ success: false, message: "NID Picture is Required" });
     }
@@ -47,12 +50,21 @@ export const registerController = async (req, res) => {
       return res.status(400).send({ success: false, message: "Only image files are allowed for NID" });
     }
 
-    // Check existing user
-    const existingUser = await userModel.findOne({ email });
-    if (existingUser) {
+    // Check existing user by email
+    const existingUserByEmail = await userModel.findOne({ email });
+    if (existingUserByEmail) {
       return res.status(200).send({
         success: false,
-        message: "Already registered, please login",
+        message: "Email already registered, please login",
+      });
+    }
+
+    // Check existing user by NID number
+    const existingUserByNID = await userModel.findOne({ nidNumber });
+    if (existingUserByNID) {
+      return res.status(200).send({
+        success: false,
+        message: "NID number already registered",
       });
     }
 
@@ -76,6 +88,7 @@ export const registerController = async (req, res) => {
       name,
       email,
       phone,
+      nidNumber,
       nid: nidData,
       address,
       password: hashedPassword,

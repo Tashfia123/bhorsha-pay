@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
 import { motion } from 'framer-motion';
+import NIDValidation from '../components/NIDValidation';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -10,6 +11,7 @@ const Register = () => {
     email: '',
     password: '',
     phone: '',
+    nidNumber: '',
     nid: '',
     address: '',
     answer: '',
@@ -32,15 +34,16 @@ const Register = () => {
     setError('');
     
     try {
-      const result = await register(
-        formData.name,
-        formData.email,
-        formData.password,
-        formData.phone,
-        formData.nid,
-        formData.address,
-        formData.answer
-      );
+              const result = await register(
+          formData.name,
+          formData.email,
+          formData.password,
+          formData.phone,
+          formData.nidNumber,
+          formData.nid,
+          formData.address,
+          formData.answer
+        );
       
       if (result.success) {
         // Show success message and redirect to login
@@ -139,6 +142,37 @@ const Register = () => {
                 onChange={handleChange}
                 className={`appearance-none relative block w-full px-3 py-2 border ${isDarkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300 text-gray-900'} placeholder-gray-500 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm`}
                 placeholder="Phone Number"
+              />
+            </div>
+            
+            <div>
+              <label htmlFor="nidNumber" className={`block text-sm font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                NID Number *
+              </label>
+              <input
+                id="nidNumber"
+                name="nidNumber"
+                type="text"
+                autoComplete="off"
+                required
+                value={formData.nidNumber}
+                onChange={handleChange}
+                className={`appearance-none relative block w-full px-3 py-2 border ${isDarkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300 text-gray-900'} placeholder-gray-500 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm`}
+                placeholder="Enter your NID number (10-13 digits)"
+                maxLength="13"
+              />
+              
+              {/* AI NID Validation */}
+              <NIDValidation 
+                nidNumber={formData.nidNumber}
+                onValidationChange={(result) => {
+                  if (result && !result.isValid) {
+                    setError(`NID Validation: ${result.reason}`);
+                  } else {
+                    setError('');
+                  }
+                }}
+                className="mt-2"
               />
             </div>
             

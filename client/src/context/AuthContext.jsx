@@ -57,7 +57,7 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const register = async (name, email, password, phone, nid, address, answer) => {
+  const register = async (name, email, password, phone, nidNumber, nid, address, answer) => {
     setAuthLoading(true);
     setError(null);
     try {
@@ -82,6 +82,7 @@ export const AuthProvider = ({ children }) => {
       formData.append('email', email);
       formData.append('password', password);
       formData.append('phone', phone);
+      formData.append('nidNumber', nidNumber);
       formData.append('nid', nid);
       formData.append('address', address);
       formData.append('answer', answer);

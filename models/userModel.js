@@ -44,12 +44,23 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
-  role: {
+    role: {
     type: Number,
     default: 0,
   },
-    defaultWalletAddress: {
-      type: String,
+  nidNumber: {
+    type: String,
+    required: true,
+    unique: true,
+    validate: {
+      validator: function(v) {
+        return /^\d{10,13}$/.test(v);
+      },
+      message: 'NID number must be 10-13 digits'
+    }
+  },
+  defaultWalletAddress: {
+    type: String,
       default: "", // Can be set to an empty string or a placeholder value
     },
     walletAddresses: {

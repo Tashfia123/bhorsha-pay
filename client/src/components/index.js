@@ -18,3 +18,5 @@ export { default as CampaignFilters } from './CampaignFilters';
 export { default as TopDonors } from './TopDonors';
 export { default as RecentProjects } from './RecentProjects';
 export { default as CampaignStats } from './CampaignStats';
+export { default as NIDValidation } from './NIDValidation';
+export { default as ManualVerification } from './ManualVerification';

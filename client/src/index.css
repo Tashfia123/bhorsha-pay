@@ -180,3 +180,101 @@ iframe {
   font-size: 1rem;
   vertical-align: middle;
 }
+
+/* Custom NID Validation Styles */
+.nid-validation {
+  @apply w-full;
+}
+
+.validation-result {
+  @apply transition-all duration-300 ease-in-out;
+}
+
+.validation-result.low {
+  @apply border-green-500/30 bg-green-500/10;
+}
+
+.validation-result.medium {
+  @apply border-yellow-500/30 bg-yellow-500/10;
+}
+
+.validation-result.high {
+  @apply border-red-500/30 bg-red-500/10;
+}
+
+.validation-result.error {
+  @apply border-red-600/30 bg-red-600/10;
+}
+
+.risk-badge {
+  @apply px-2 py-1 text-xs font-bold rounded-full text-white;
+}
+
+.risk-badge.low {
+  @apply bg-green-500;
+}
+
+.risk-badge.medium {
+  @apply bg-yellow-500;
+}
+
+.risk-badge.high {
+  @apply bg-red-500;
+}
+
+.risk-badge.error {
+  @apply bg-red-600;
+}
+
+.check-item {
+  @apply transition-all duration-200 hover:bg-white/10;
+}
+
+.status.pass {
+  @apply text-green-500;
+}
+
+.status.fail {
+  @apply text-red-500;
+}
+
+.validation-loading {
+  @apply flex items-center space-x-2 text-blue-500;
+}
+
+/* Animation classes */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 5px currentColor;
+  }
+  50% {
+    box-shadow: 0 0 20px currentColor, 0 0 30px currentColor;
+  }
+}
+
+.risk-badge.low {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.risk-badge.medium {
+  animation: pulse-glow 1.5s ease-in-out infinite;
+}
+
+.risk-badge.high {
+  animation: pulse-glow 1s ease-in-out infinite;
+}
+
+/* Responsive design */
+@media (max-width: 640px) {
+  .validation-result {
+    @apply p-3;
+  }
+  
+  .check-item {
+    @apply p-1;
+  }
+  
+  .risk-badge {
+    @apply text-xs px-1 py-0.5;
+  }
+}

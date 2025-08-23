@@ -1,0 +1,182 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Dark mode styles (default) */
+:root {
+  --background-primary: #13131a;
+  --background-secondary: #1c1c24;
+  --text-primary: #ffffff;
+  --text-secondary: #808191;
+  --accent-color: #1dc071;
+  --card-bg: #1c1c24;
+  --border-color: #3a3a43;
+}
+
+/* Light mode styles */
+.light-mode {
+  --background-primary: #f5f5f7;
+  --background-secondary: #ffffff;
+  --text-primary: #1a1a1a;
+  --text-secondary: #4b5563;
+  --accent-color: #10b981;
+  --card-bg: #ffffff;
+  --border-color: #e5e7eb;
+}
+
+/* Apply theme variables */
+body {
+  background-color: var(--background-primary);
+  color: var(--text-primary);
+  font-family: "Inter", "Poppins", "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* Custom font classes for different text styles */
+.font-heading {
+  font-family: "Poppins", "Inter", sans-serif;
+}
+
+.font-body {
+  font-family: "Inter", "Roboto", sans-serif;
+}
+
+.font-display {
+  font-family: "Poppins", "Inter", sans-serif;
+  font-weight: 700;
+}
+
+.linear-gradient {
+  background: linear-gradient(
+    179.14deg,
+    rgba(32, 18, 63, 0) -7.14%,
+    #000000 87.01%
+  );
+}
+
+.light-mode .linear-gradient {
+  background: linear-gradient(
+    179.14deg,
+    rgba(245, 245, 247, 0) -7.14%,
+    #f5f5f7 87.01%
+  );
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  filter: invert(0.8);
+}
+
+.light-mode input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.2);
+}
+
+.profile-card {
+  background-image: linear-gradient(135deg, #2a2d35, #1c1c24);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);
+  padding: 16px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.light-mode .profile-card {
+  background-image: linear-gradient(135deg, #ffffff, #f5f5f7);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-card img {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 2px solid #6a5acd;
+}
+
+.profile-card img:hover {
+  border-color: #1dc071;
+}
+
+.light-mode .profile-card img {
+  border: 2px solid #8b5cf6;
+}
+
+.light-mode .profile-card img:hover {
+  border-color: #10b981;
+}
+
+.profile-card h2 {
+  font-size: 1.125rem; /* 18px */
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.light-mode .profile-card h2 {
+  color: #1a1a1a;
+}
+
+.profile-card p {
+  color: #808191;
+  font-size: 0.875rem; /* 14px */
+}
+
+.light-mode .profile-card p {
+  color: #4b5563;
+}
+
+.profile-container {
+  position: relative;
+  background: linear-gradient(135deg, #1c1c24, #2a2d35);
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 24px;
+  border-radius: 12px;
+}
+
+.profile-container img {
+  border-radius: 50%;
+  border: 4px solid #1dc071;
+  transition: border-color 0.3s ease-in-out;
+}
+
+.profile-container img:hover {
+  border-color: #6a5acd;
+}
+
+.profile-container h2 {
+  font-size: 1.5rem;
+  color: #6a5acd;
+  font-weight: bold;
+}
+
+iframe {
+  font-size: 30px !important; /* Increase font size */
+  font-weight: bold !important; /* Make text bold */
+}
+
+.profile-container p {
+  font-size: 0.875rem;
+  color: #b3b3c0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.profile-container button {
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.profile-container button:hover {
+  transform: scale(1.05);
+}
+
+.material-icons {
+  font-size: 1rem;
+  vertical-align: middle;
+}

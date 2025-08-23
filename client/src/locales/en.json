@@ -1,0 +1,7 @@
+{
+  "common": {
+    "connect": "Connect",
+    "create_campaign": "Create a Campaign",
+    "donate": "Donate"
+  }
+}

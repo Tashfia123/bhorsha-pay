@@ -4,7 +4,6 @@ import { useRef, useEffect, useState } from "react";
 import video1 from "../assets/video1.mp4";
 import video2 from "../assets/video2.mp4";
 
-
 const Homepage = () => {
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -30,7 +29,10 @@ const Homepage = () => {
   }, []);
 
   return (
-    <div ref={containerRef} className="relative min-h-screen bg-gradient-to-b from-[#0f172a] to-[#1e293b] overflow-hidden">
+    <div
+      ref={containerRef}
+      className="relative min-h-screen bg-gradient-to-b from-[#0f172a] to-[#1e293b] overflow-hidden"
+    >
       {/* Animated Background */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,168,107,0.1),transparent_50%)]"></div>
@@ -49,7 +51,12 @@ const Homepage = () => {
             x: mousePosition.x - 150,
             y: mousePosition.y - 150,
           }}
-          transition={{ type: "spring", damping: 15, stiffness: 80, delay: 0.2 }}
+          transition={{
+            type: "spring",
+            damping: 15,
+            stiffness: 80,
+            delay: 0.2,
+          }}
         />
         <motion.div
           className="absolute w-[200px] h-[200px] bg-[#8c6dfd] rounded-full blur-[80px] opacity-10"
@@ -57,7 +64,12 @@ const Homepage = () => {
             x: mousePosition.x - 100,
             y: mousePosition.y - 100,
           }}
-          transition={{ type: "spring", damping: 10, stiffness: 60, delay: 0.4 }}
+          transition={{
+            type: "spring",
+            damping: 10,
+            stiffness: 60,
+            delay: 0.4,
+          }}
         />
       </div>
 
@@ -79,8 +91,8 @@ const Homepage = () => {
               Bhorsha-Pay
             </h1>
           </motion.div>
-          
-          <motion.p 
+
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -89,7 +101,7 @@ const Homepage = () => {
             Revolutionizing Fundraising with Blockchain Technology
           </motion.p>
 
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
@@ -110,7 +122,7 @@ const Homepage = () => {
           </motion.p>
 
           {/* Call to Action Buttons */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
@@ -118,7 +130,7 @@ const Homepage = () => {
           >
             {/* Crypto Resources */}
             <div className="w-full max-w-3xl">
-              <motion.h3 
+              <motion.h3
                 whileHover={{ scale: 1.05 }}
                 className="text-xl font-semibold text-[#00A86B] mb-6 text-center bg-white/5 py-3 rounded-lg backdrop-blur-sm border border-white/10 shadow-lg"
               >
@@ -153,13 +165,13 @@ const Homepage = () => {
         </motion.div>
 
         {/* Video Section */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1 }}
           className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-8"
         >
-          <motion.div 
+          <motion.div
             className="relative group"
             whileHover={{ scale: 1.02 }}
             transition={{ type: "spring", stiffness: 300 }}
@@ -175,7 +187,7 @@ const Homepage = () => {
               Your browser does not support the video tag.
             </video>
           </motion.div>
-          <motion.div 
+          <motion.div
             className="relative group"
             whileHover={{ scale: 1.02 }}
             transition={{ type: "spring", stiffness: 300 }}
@@ -195,7 +207,7 @@ const Homepage = () => {
       </div>
 
       {/* Features Section */}
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 1.2 }}
@@ -203,39 +215,57 @@ const Homepage = () => {
       >
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <motion.div 
+            <motion.div
               className="p-8 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 group hover:bg-white/10 transition-colors duration-300 shadow-xl hover:shadow-2xl"
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
-              <div className="text-[#00A86B] text-4xl mb-6 transform group-hover:scale-110 transition-transform duration-300">🔒</div>
-              <h3 className="text-2xl font-semibold text-white mb-4">Secure Transactions</h3>
-              <p className="text-gray-400 leading-relaxed">Every donation is secured by blockchain technology</p>
+              <div className="text-[#00A86B] text-4xl mb-6 transform group-hover:scale-110 transition-transform duration-300">
+                🔒
+              </div>
+              <h3 className="text-2xl font-semibold text-white mb-4">
+                Secure Transactions
+              </h3>
+              <p className="text-gray-400 leading-relaxed">
+                Every donation is secured by blockchain technology
+              </p>
             </motion.div>
-            <motion.div 
+            <motion.div
               className="p-8 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 group hover:bg-white/10 transition-colors duration-300 shadow-xl hover:shadow-2xl"
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
-              <div className="text-[#00A86B] text-4xl mb-6 transform group-hover:scale-110 transition-transform duration-300">👥</div>
-              <h3 className="text-2xl font-semibold text-white mb-4">Community Driven</h3>
-              <p className="text-gray-400 leading-relaxed">Join a global community of funders and creators</p>
+              <div className="text-[#00A86B] text-4xl mb-6 transform group-hover:scale-110 transition-transform duration-300">
+                👥
+              </div>
+              <h3 className="text-2xl font-semibold text-white mb-4">
+                Community Driven
+              </h3>
+              <p className="text-gray-400 leading-relaxed">
+                Join a global community of funders and creators
+              </p>
             </motion.div>
-            <motion.div 
+            <motion.div
               className="p-8 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 group hover:bg-white/10 transition-colors duration-300 shadow-xl hover:shadow-2xl"
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
-              <div className="text-[#00A86B] text-4xl mb-6 transform group-hover:scale-110 transition-transform duration-300">💎</div>
-              <h3 className="text-2xl font-semibold text-white mb-4">Transparent</h3>
-              <p className="text-gray-400 leading-relaxed">Track every transaction on the blockchain</p>
+              <div className="text-[#00A86B] text-4xl mb-6 transform group-hover:scale-110 transition-transform duration-300">
+                💎
+              </div>
+              <h3 className="text-2xl font-semibold text-white mb-4">
+                Transparent
+              </h3>
+              <p className="text-gray-400 leading-relaxed">
+                Track every transaction on the blockchain
+              </p>
             </motion.div>
           </div>
         </div>
       </motion.div>
 
       {/* Stats Section */}
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 1.4 }}
@@ -243,36 +273,44 @@ const Homepage = () => {
       >
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <motion.div 
+            <motion.div
               className="text-center p-6 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 shadow-xl hover:shadow-2xl transition-all duration-300"
               whileHover={{ scale: 1.1 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
-              <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#00A86B] to-[#4acd8d] mb-4">$10M+</div>
+              <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#00A86B] to-[#4acd8d] mb-4">
+                $10M+
+              </div>
               <div className="text-gray-400 text-lg">Total Funds Raised</div>
             </motion.div>
-            <motion.div 
+            <motion.div
               className="text-center p-6 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 shadow-xl hover:shadow-2xl transition-all duration-300"
               whileHover={{ scale: 1.1 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
-              <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#00A86B] to-[#4acd8d] mb-4">500+</div>
+              <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#00A86B] to-[#4acd8d] mb-4">
+                500+
+              </div>
               <div className="text-gray-400 text-lg">Active Campaigns</div>
             </motion.div>
-            <motion.div 
+            <motion.div
               className="text-center p-6 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 shadow-xl hover:shadow-2xl transition-all duration-300"
               whileHover={{ scale: 1.1 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
-              <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#00A86B] to-[#4acd8d] mb-4">50K+</div>
+              <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#00A86B] to-[#4acd8d] mb-4">
+                50K+
+              </div>
               <div className="text-gray-400 text-lg">Community Members</div>
             </motion.div>
-            <motion.div 
+            <motion.div
               className="text-center p-6 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 shadow-xl hover:shadow-2xl transition-all duration-300"
               whileHover={{ scale: 1.1 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
-              <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#00A86B] to-[#4acd8d] mb-4">99.9%</div>
+              <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#00A86B] to-[#4acd8d] mb-4">
+                99.9%
+              </div>
               <div className="text-gray-400 text-lg">Success Rate</div>
             </motion.div>
           </div>
@@ -280,7 +318,7 @@ const Homepage = () => {
       </motion.div>
 
       {/* Etherscan Button Section */}
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 1.6 }}
@@ -293,14 +331,17 @@ const Homepage = () => {
             transition={{ duration: 0.8, delay: 1.8 }}
             className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 shadow-2xl"
           >
-            <h2 className="text-3xl font-bold text-white mb-4">Blockchain Transparency</h2>
+            <h2 className="text-3xl font-bold text-white mb-4">
+              Blockchain Transparency
+            </h2>
             <p className="text-gray-400 text-lg mb-8">
-              View all transactions and verify smart contract activity on the Ethereum blockchain
+              View all transactions and verify smart contract activity on the
+              Ethereum blockchain
             </p>
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => window.open('https://etherscan.io/', '_blank')}
+              onClick={() => window.open("https://etherscan.io/", "_blank")}
               className="bg-gradient-to-r from-[#00A86B] to-[#4acd8d] text-white font-semibold py-4 px-8 rounded-xl hover:from-[#009a5f] hover:to-[#3dbd7d] transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center space-x-3 mx-auto text-lg"
             >
               <span>🔍</span>

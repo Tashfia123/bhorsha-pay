@@ -15,11 +15,11 @@ const Home = () => {
   const navigate = useNavigate();
   const { isDarkMode } = useTheme();
 
-  const { address, contract, getCampaigns } = useStateContext();
+  const { address, contract, getAllCampaigns } = useStateContext();
 
   const fetchCampaigns = async () => {
     setIsLoading(true);
-    const data = await getCampaigns(contract);
+    const data = await getAllCampaigns(contract);
     
     setCampaigns(data);
   

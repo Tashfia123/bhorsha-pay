@@ -37,11 +37,11 @@ const Chatbot_Assistant = () => {
   const [activeIndex, setActiveIndex] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredFaqs, setFilteredFaqs] = useState(faqs);
-  const [chatText, setChatText] = useState("Need help?");
+  const [chatText, setChatText] = useState("🚀 Ask BhorshaPay AI!");
 
   // Chat text animation loop
   useEffect(() => {
-    const texts = ["Ask me anything!", "Need help?", "Chat with me!"];
+    const texts = ["🚀 Ask BhorshaPay AI!", "💡 Need guidance?", "🤖 Chat with your AI Guru!"];
     let index = 0;
     const interval = setInterval(() => {
       setChatText(texts[index]);
@@ -98,15 +98,14 @@ const Chatbot_Assistant = () => {
             isDarkMode ? "text-[#9b73d3]" : "text-purple-600"
           }`}
         >
-          Blockchain Info
+          🚀 BhorshaPay AI Guru
         </h1>
         <p
           className={`text-lg mt-4 ${
             isDarkMode ? "text-gray-400" : "text-gray-600"
           }`}
         >
-          Learn about Blockchain and its use in fundraising through FAQs or chat
-          with our assistant!
+          Your intelligent companion for blockchain knowledge and Bhorsha Pay guidance!
         </p>
       </div>
 
@@ -117,7 +116,7 @@ const Chatbot_Assistant = () => {
             isDarkMode ? "text-[#57eba3]" : "text-green-600"
           }`}
         >
-          Frequently Asked Questions
+          💡 Smart Questions & Answers
         </h2>
         <div className="space-y-4">
           {filteredFaqs.map((faq, index) => (

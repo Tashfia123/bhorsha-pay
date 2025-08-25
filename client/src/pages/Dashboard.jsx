@@ -7,7 +7,7 @@ import RecentProjects from "../components/RecentProjects";
 import EthPriceChart from "../components/EthPriceChart";
 
 const Dashboard = () => {
-  const { getTotalDonations, contract, getCampaigns } = useStateContext();
+  const { getTotalDonations, contract, getAllCampaigns } = useStateContext();
   const [totalDonations, setTotalDonations] = useState(0);
   const [totalCampaigns, setTotalCampaigns] = useState(0);
   const [activeCampaigns, setActiveCampaigns] = useState(0);
@@ -27,8 +27,8 @@ const Dashboard = () => {
         const donations = await getTotalDonations();
         setTotalDonations(donations);
 
-        // Fetch campaigns
-        const campaigns = await getCampaigns(contract);
+        // Fetch campaigns using getAllCampaigns (not getCampaigns)
+        const campaigns = await getAllCampaigns(contract);
         setTotalCampaigns(campaigns.length);
         
         // Count active campaigns (deadline in the future)

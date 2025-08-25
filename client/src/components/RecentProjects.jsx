@@ -6,7 +6,7 @@ import { daysLeft } from "../utils";
 import { FaFire, FaCrown, FaCalendarAlt, FaCoins, FaBullseye } from "react-icons/fa";
 
 const RecentProjects = () => {
-  const { contract, getCampaigns } = useStateContext();
+  const { contract, getAllCampaigns } = useStateContext();
   const [recentCampaigns, setRecentCampaigns] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ const RecentProjects = () => {
 
       setIsLoading(true);
       try {
-        const campaigns = await getCampaigns(contract);
+        const campaigns = await getAllCampaigns(contract);
         // Sort campaigns by newest first (highest pId)
         const sortedCampaigns = [...campaigns].sort((a, b) => b.pId - a.pId);
         // Take the first 5 campaigns (most recent)

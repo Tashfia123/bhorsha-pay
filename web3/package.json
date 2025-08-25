@@ -7,11 +7,14 @@
   },
   "devDependencies": {
     "@matterlabs/hardhat-zksync-solc": "^0.3.17",
+    "@nomiclabs/hardhat-ethers": "^2.2.3",
+    "@nomiclabs/hardhat-etherscan": "^3.1.8",
+    "dotenv": "^17.2.1",
+    "ethers": "^5.8.0",
     "hardhat": "^2.13.0"
   },
   "dependencies": {
     "@thirdweb-dev/contracts": "^3.8.0",
-    "dotenv": "^16.4.5",
     "zksync-web3": "^0.14.3"
   }
 }

@@ -19,13 +19,8 @@ const Home = () => {
 
   const fetchCampaigns = async () => {
     setIsLoading(true);
-<<<<<<< HEAD
-    const data = await getAllCampaigns(contract);
-    
-=======
     const data = await getCampaigns(contract);
 
->>>>>>> origin/master
     setCampaigns(data);
 
     // Ensure the newest campaigns (highest pId) come first

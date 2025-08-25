@@ -36,7 +36,7 @@ const ChatbotPage = () => {
         }}
       >
         <Typography variant="h6" sx={{ color: "white" }}>
-          🤖 BlockFunder Chatbot
+          🚀 BhorshaPay AI Assistant
         </Typography>
         <IconButton onClick={handleClose} sx={{ color: "white" }}>
           <CloseIcon />

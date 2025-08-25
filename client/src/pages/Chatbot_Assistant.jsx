@@ -38,11 +38,15 @@ const Chatbot_Assistant = () => {
   const [activeIndex, setActiveIndex] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredFaqs, setFilteredFaqs] = useState(faqs);
-  const [chatText, setChatText] = useState("Need help?");
+  const [chatText, setChatText] = useState("🚀 Ask BhorshaPay AI!");
 
   // Chat text animation loop
   useEffect(() => {
-    const texts = ["Ask me anything!", "Need help?", "Chat with me!"];
+    const texts = [
+      "🚀 Ask BhorshaPay AI!",
+      "💡 Need guidance?",
+      "🤖 Chat with your AI Guru!",
+    ];
     let index = 0;
     const interval = setInterval(() => {
       setChatText(texts[index]);
@@ -102,7 +106,7 @@ const Chatbot_Assistant = () => {
             isDarkMode ? "text-[#9b73d3]" : "text-purple-600"
           }`}
         >
-          Blockchain Info
+          🚀 BhorshaPay AI Guru
         </h1>
         <motion.p
           initial={{ opacity: 0 }}

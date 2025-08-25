@@ -31,12 +31,41 @@ const CreateCampaign = () => {
     checkIfImage(form.image, async (exists) => {
       if (exists) {
         setIsLoading(true);
-        await createCampaign({
-          ...form,
-          target: ethers.utils.parseUnits(form.target, 18),
-        });
-        setIsLoading(false);
-        navigate("/");
+        
+        // Clean the target amount - remove any non-numeric characters except decimal point
+        const cleanTarget = form.target.toString().replace(/[^0-9.]/g, '');
+        
+        // Validate the target amount
+        if (!cleanTarget || isNaN(parseFloat(cleanTarget)) || parseFloat(cleanTarget) <= 0) {
+          alert("Please enter a valid target amount (positive numbers only, e.g., 1, 0.5, 100)");
+          setIsLoading(false);
+          return;
+        }
+        
+        try {
+          console.log("Sending campaign data:", {
+            ...form,
+            target: cleanTarget
+          });
+          
+          const result = await createCampaign({
+            ...form,
+            target: cleanTarget, // Send the cleaned number, let context handle conversion
+          });
+          
+          console.log("Campaign creation result:", result);
+          setIsLoading(false);
+          navigate("/");
+        } catch (error) {
+          console.error("Campaign creation failed:", error);
+          console.error("Error details:", {
+            message: error.message,
+            code: error.code,
+            stack: error.stack
+          });
+          alert(`Failed to create campaign: ${error.message}`);
+          setIsLoading(false);
+        }
       } else {
         alert("Provide a valid image URL");
         setForm({ ...form, image: "" });

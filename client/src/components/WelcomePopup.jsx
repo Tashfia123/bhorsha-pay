@@ -84,14 +84,14 @@ const WelcomePopup = ({ show: externalShow, onClose: externalOnClose }) => {
               <h1 className={`text-3xl font-bold mb-4 ${
                 isDarkMode ? 'text-white' : 'text-gray-900'
               }`}>
-                👋 Welcome to BlockFunder! 🚀
+                👋 Welcome to Bhorsha Pay! 🚀
               </h1>
 
               {/* Description */}
               <p className={`text-lg mb-6 ${
                 isDarkMode ? 'text-gray-300' : 'text-gray-600'
               }`}>
-                Bangladesh's premier blockchain-based crowdfunding platform
+                Bangladesh's premier blockchain-based payment and crowdfunding platform
               </p>
 
               {/* Features */}

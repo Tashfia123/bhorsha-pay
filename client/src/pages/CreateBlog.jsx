@@ -18,7 +18,7 @@ const CreateBlog = () => {
   const [campaignSearchResults, setCampaignSearchResults] = useState([]);
   const { user } = useAuth();
   const navigate = useNavigate();
-  const { contract, address } = useStateContext();
+  const { contract, address, getAllCampaigns } = useStateContext();
 
   // Redirect if not logged in
   useEffect(() => {
@@ -33,20 +33,21 @@ const CreateBlog = () => {
     setLoading(true);
     
     try {
-      const allCampaigns = await contract.call('getCampaigns');
+      // Use getAllCampaigns from context instead of direct contract call
+      const allCampaigns = await getAllCampaigns(contract);
       
       const filteredCampaigns = allCampaigns.filter(campaign => 
         campaign.title.toLowerCase().includes(searchTerm.toLowerCase())
       );
       
-      const parsedCampaigns = filteredCampaigns.map((campaign, i) => ({
-        id: i,
+      const parsedCampaigns = filteredCampaigns.map((campaign) => ({
+        id: campaign.pId,
         owner: campaign.owner,
         title: campaign.title,
         description: campaign.description,
-        target: parseInt(campaign.target._hex) / 10**18,
-        deadline: new Date(parseInt(campaign.deadline._hex) * 1000).toISOString(),
-        collected_amount: parseInt(campaign.collected_amount._hex) / 10**18,
+        target: parseFloat(campaign.target),
+        deadline: new Date(campaign.deadline).toISOString(),
+        collected_amount: parseFloat(campaign.amountCollected),
         image: campaign.image
       }));
       

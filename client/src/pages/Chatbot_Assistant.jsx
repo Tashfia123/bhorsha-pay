@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useTheme } from "../context/ThemeContext";
 import { ChatBubbleOutline } from "@mui/icons-material";
 import { Box, Typography, Fab } from "@mui/material";
+import { motion, AnimatePresence } from "framer-motion";
 
 const faqs = [
   {
@@ -54,22 +55,20 @@ const Chatbot_Assistant = () => {
   useEffect(() => {
     const script = document.createElement("script");
     script.src = "https://www.chatbase.co/embed.min.js";
-    script.id = "hpXRnHUypnv4SHnBylh1I"; // Your Chatbase bot ID
+    script.id = "hpXRnHUypnv4SHnBylh1I";
     script.domain = "www.chatbase.co";
     document.body.appendChild(script);
-  
+
     // Wait for Chatbase to load, then hide its default button
     setTimeout(() => {
       const chatbaseButton = document.querySelector("iframe[title='Chatbot']");
-      if (chatbaseButton) chatbaseButton.style.display = "none";  // Hides default Chatbase button
-    }, 2000);  // Give it 2 seconds to ensure it's loaded before hiding
-  
+      if (chatbaseButton) chatbaseButton.style.display = "none"; // Hides default Chatbase button
+    }, 2000); // Give it 2 seconds to ensure it's loaded before hiding
+
     return () => {
       document.body.removeChild(script);
     };
   }, []);
-  
-   
 
   useEffect(() => {
     setFilteredFaqs(
@@ -91,8 +90,13 @@ const Chatbot_Assistant = () => {
           : "bg-gradient-to-br from-gray-100 via-gray-50 to-white text-gray-800"
       }`}
     >
-      {/* Header */}
-      <div className="text-center mb-12">
+      {/* Header with animation */}
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="text-center mb-12"
+      >
         <h1
           className={`text-4xl font-extrabold ${
             isDarkMode ? "text-[#9b73d3]" : "text-purple-600"
@@ -100,98 +104,146 @@ const Chatbot_Assistant = () => {
         >
           🚀 BhorshaPay AI Guru
         </h1>
-        <p
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.2 }}
           className={`text-lg mt-4 ${
             isDarkMode ? "text-gray-400" : "text-gray-600"
           }`}
         >
+<<<<<<< HEAD
           Your intelligent companion for blockchain knowledge and Bhorsha Pay guidance!
         </p>
       </div>
+=======
+          Learn about Blockchain and its use in fundraising through FAQs or chat
+          with our assistant!
+        </motion.p>
+      </motion.div>
+>>>>>>> origin/master
 
-      {/* FAQ Section */}
+      {/* FAQ Section with enhanced animations */}
       <div className="max-w-4xl mx-auto mb-16">
-        <h2
+        <motion.h2
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
           className={`text-2xl font-bold mb-6 ${
             isDarkMode ? "text-[#57eba3]" : "text-green-600"
           }`}
         >
+<<<<<<< HEAD
           💡 Smart Questions & Answers
         </h2>
+=======
+          Frequently Asked Questions
+        </motion.h2>
+>>>>>>> origin/master
         <div className="space-y-4">
-          {filteredFaqs.map((faq, index) => (
-            <div
-              key={index}
-              className={`p-6 rounded-lg shadow-lg cursor-pointer border transition-all duration-300 ease-in-out transform hover:scale-105 ${
-                isDarkMode
-                  ? `bg-[#2d2d3d] ${
-                      activeIndex === index ? "border-[#57eba3]" : "border-[#3a3a4a]"
-                    }`
-                  : `bg-white ${
-                      activeIndex === index ? "border-green-500" : "border-gray-200"
-                    }`
-              }`}
-              onClick={() => toggleFAQ(index)}
-            >
-              <h3 className="text-lg font-semibold flex justify-between items-center">
-                {faq.question}
-                <button
-                  className={`ml-2 p-1 rounded-full focus:outline-none ${
-                    isDarkMode ? "text-[#57eba3] bg-[#1e1e2d]" : "text-green-600 bg-gray-100"
-                  }`}
-                >
-                  {activeIndex === index ? "-" : "+"}
-                </button>
-              </h3>
-              {activeIndex === index && (
-                <p
-                  className={`mt-4 pt-4 border-t ${
-                    isDarkMode
-                      ? "text-gray-300 border-[#3a3a4a]"
-                      : "text-gray-600 border-gray-200"
-                  }`}
-                >
-                  {faq.answer}
-                </p>
-              )}
-            </div>
-          ))}
+          <AnimatePresence>
+            {filteredFaqs.map((faq, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.3, delay: index * 0.1 }}
+                whileHover={{
+                  scale: 1.02,
+                  boxShadow: isDarkMode
+                    ? "0 0 20px rgba(87, 235, 163, 0.2)"
+                    : "0 0 20px rgba(0, 0, 0, 0.1)",
+                }}
+                className={`p-6 rounded-lg shadow-lg cursor-pointer border transition-all duration-300 ease-in-out ${
+                  isDarkMode
+                    ? `bg-[#2d2d3d] ${
+                        activeIndex === index
+                          ? "border-[#57eba3]"
+                          : "border-[#3a3a4a]"
+                      }`
+                    : `bg-white ${
+                        activeIndex === index
+                          ? "border-green-500"
+                          : "border-gray-200"
+                      }`
+                }`}
+                onClick={() => toggleFAQ(index)}
+              >
+                <div className="flex justify-between items-center">
+                  <h3 className="text-lg font-semibold">{faq.question}</h3>
+                  <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                    className={`ml-2 w-8 h-8 rounded-full flex items-center justify-center ${
+                      isDarkMode
+                        ? "bg-[#1e1e2d] text-[#57eba3]"
+                        : "bg-gray-100 text-green-600"
+                    }`}
+                  >
+                    {activeIndex === index ? "-" : "+"}
+                  </motion.button>
+                </div>
+                <AnimatePresence>
+                  {activeIndex === index && (
+                    <motion.p
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className={`mt-4 pt-4 border-t ${
+                        isDarkMode
+                          ? "text-gray-300 border-[#3a3a4a]"
+                          : "text-gray-600 border-gray-200"
+                      }`}
+                    >
+                      {faq.answer}
+                    </motion.p>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            ))}
+          </AnimatePresence>
         </div>
       </div>
 
-      {/* Chatbot Floating Button */}
+      {/* Enhanced Chatbot Button */}
       <Box
-        sx={{
-          position: "fixed",
-          bottom: 80,
-          right: 16,
-          textAlign: "center",
-        }}
+        sx={{ position: "fixed", bottom: 80, right: 16, textAlign: "center" }}
       >
-        <Typography
-          variant="subtitle1"
-          sx={{ color: "#57eba3", fontWeight: "bold", mb: 1, opacity: 0.8 }}
+        <motion.div
+          animate={{ y: [0, -10, 0] }}
+          transition={{ repeat: Infinity, duration: 2 }}
         >
-          {chatText}
-        </Typography>
+          <Typography
+            variant="subtitle1"
+            sx={{ color: "#57eba3", fontWeight: "bold", mb: 1, opacity: 0.8 }}
+          >
+            {chatText}
+          </Typography>
+        </motion.div>
       </Box>
 
-      <Fab
-  color="primary"
-  sx={{
-    position: "fixed",
-    bottom: 16,
-    right: 16,
-    bgcolor: "#57eba3",
-    color: "#fff",
-    width: "70px",
-    height: "70px",
-    opacity: 0, // ⬅️ Makes it invisible
-    pointerEvents: "none", // ⬅️ Prevents clicking
-  }}
->
-  <ChatBubbleOutline sx={{ fontSize: "40px" }} />
-</Fab>
+      <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+        <Fab
+          color="primary"
+          sx={{
+            position: "fixed",
+            bottom: 16,
+            right: 16,
+            bgcolor: "#57eba3",
+            color: "#fff",
+            width: "70px",
+            height: "70px",
+            opacity: 0,
+            pointerEvents: "none",
+            "&:hover": {
+              bgcolor: "#4ad094",
+            },
+          }}
+        >
+          <ChatBubbleOutline sx={{ fontSize: "40px" }} />
+        </Fab>
+      </motion.div>
     </div>
   );
 };

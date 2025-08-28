@@ -19,9 +19,20 @@ const Register = () => {
   const [error, setError] = useState("");
   const [currentStep, setCurrentStep] = useState(1);
   const [showPassword, setShowPassword] = useState(false);
+  const [focusedField, setFocusedField] = useState(null);
   const { register, authLoading } = useAuth();
   const navigate = useNavigate();
   const { isDarkMode } = useTheme();
+
+  // Animation variants
+  const fieldVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5 },
+    },
+  };
 
   const handleChange = (e) => {
     const { name, value, type, files } = e.target;
@@ -845,27 +856,37 @@ const Register = () => {
         {/* Right Side - Registration Form */}
         <div className="lg:w-1/2 p-8 flex flex-col justify-center">
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className={`w-full max-w-md mx-auto p-8 rounded-2xl backdrop-blur-lg border ${
+            initial={{ opacity: 0, x: 50, scale: 0.9 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
+            transition={{ duration: 0.8, type: "spring", stiffness: 100 }}
+            className={`w-full max-w-md mx-auto space-y-8 ${
               isDarkMode
-                ? "bg-gray-800/30 border-gray-700/50 shadow-2xl"
-                : "bg-white/70 border-white/50 shadow-xl"
+                ? "bg-gray-800/90 backdrop-blur-xl"
+                : "bg-white/90 backdrop-blur-xl"
+            } p-10 rounded-3xl shadow-2xl border ${
+              isDarkMode ? "border-gray-700/50" : "border-gray-200/50"
             } relative overflow-hidden`}
           >
             {/* Animated border glow */}
             <motion.div
-              animate={{
-                opacity: [0.5, 1, 0.5],
+              className="absolute inset-0 rounded-3xl"
+              style={{
+                background: `linear-gradient(45deg, ${
+                  isDarkMode ? "#3B82F6" : "#6366F1"
+                }, ${isDarkMode ? "#8B5CF6" : "#8B5CF6"}, ${
+                  isDarkMode ? "#3B82F6" : "#6366F1"
+                })`,
+                padding: "2px",
               }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              className="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-blue-500/20 rounded-2xl blur-xl"
-            />
+              animate={{ rotate: 360 }}
+              transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+            >
+              <div
+                className={`w-full h-full rounded-3xl ${
+                  isDarkMode ? "bg-gray-800" : "bg-white"
+                }`}
+              />
+            </motion.div>
 
             <div className="relative z-10">
               <motion.div
@@ -874,50 +895,47 @@ const Register = () => {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="text-center mb-8"
               >
-                <h2
+                <motion.h2
                   className={`text-3xl font-bold ${
                     isDarkMode ? "text-white" : "text-gray-900"
                   } mb-2`}
+                  animate={{ y: [0, -2, 0] }}
+                  transition={{ duration: 2, repeat: Infinity }}
                 >
                   Create Account
-                </h2>
-                <p
+                </motion.h2>
+                <motion.p
                   className={`text-sm ${
                     isDarkMode ? "text-gray-400" : "text-gray-600"
                   }`}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.4 }}
                 >
                   Step {currentStep} of 3
-                </p>
+                </motion.p>
               </motion.div>
 
-              <AnimatePresence mode="wait">
+              <AnimatePresence>
                 {error && (
                   <motion.div
-                    initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                    initial={{ opacity: 0, y: -20, scale: 0.9 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: -10, scale: 0.95 }}
-                    transition={{ duration: 0.3 }}
-                    className={`mb-6 p-4 rounded-xl border ${
-                      isDarkMode
-                        ? "bg-red-900/20 border-red-500/30 text-red-400"
-                        : "bg-red-50 border-red-200 text-red-700"
-                    } relative overflow-hidden`}
+                    exit={{ opacity: 0, y: -20, scale: 0.9 }}
+                    className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl relative"
                     role="alert"
                   >
                     <motion.div
-                      initial={{ x: "-100%" }}
-                      animate={{ x: "100%" }}
-                      transition={{ duration: 0.6, delay: 0.1 }}
-                      className="absolute inset-0 bg-gradient-to-r from-transparent via-red-500/10 to-transparent"
-                    />
-                    <div className="flex items-center space-x-2 relative z-10">
+                      className="flex items-center space-x-2"
+                      animate={{ x: [-2, 2, -2, 0] }}
+                      transition={{ duration: 0.5 }}
+                    >
                       <motion.svg
-                        initial={{ rotate: 0 }}
-                        animate={{ rotate: 360 }}
-                        transition={{ duration: 0.5 }}
-                        className="w-5 h-5 flex-shrink-0"
+                        className="w-5 h-5"
                         fill="currentColor"
                         viewBox="0 0 20 20"
+                        animate={{ rotate: [0, 10, -10, 0] }}
+                        transition={{ duration: 0.5 }}
                       >
                         <path
                           fillRule="evenodd"
@@ -925,8 +943,8 @@ const Register = () => {
                           clipRule="evenodd"
                         />
                       </motion.svg>
-                      <span className="text-sm font-medium">{error}</span>
-                    </div>
+                      <span className="text-sm">{error}</span>
+                    </motion.div>
                   </motion.div>
                 )}
               </AnimatePresence>

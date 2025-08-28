@@ -27,10 +27,10 @@ const userSchema = new mongoose.Schema(
         mimetype: { type: String, required: true },
         size: { type: Number, required: true },
         path: { type: String, required: true },
-        uploadDate: { type: Date, default: Date.now }
+        uploadDate: { type: Date, default: Date.now },
       },
       required: true,
-      _id: false
+      _id: false,
     },
     address: {
       type: {},
@@ -45,22 +45,22 @@ const userSchema = new mongoose.Schema(
       default: "",
     },
     role: {
-    type: Number,
-    default: 0,
-  },
-  nidNumber: {
-    type: String,
-    required: true,
-    unique: true,
-    validate: {
-      validator: function(v) {
-        return /^\d{10,13}$/.test(v);
+      type: Number,
+      default: 0,
+    },
+    nidNumber: {
+      type: String,
+      required: true,
+      unique: true,
+      validate: {
+        validator: function (v) {
+          return /^\d{10,13}$/.test(v);
+        },
+        message: "NID number must be 10-13 digits",
       },
-      message: 'NID number must be 10-13 digits'
-    }
-  },
-  defaultWalletAddress: {
-    type: String,
+    },
+    defaultWalletAddress: {
+      type: String,
       default: "", // Can be set to an empty string or a placeholder value
     },
     walletAddresses: {

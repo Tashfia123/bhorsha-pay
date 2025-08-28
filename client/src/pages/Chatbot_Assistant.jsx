@@ -43,9 +43,9 @@ const Chatbot_Assistant = () => {
   // Chat text animation loop
   useEffect(() => {
     const texts = [
-      "🚀 Ask BhorshaPay AI!",
+      "🚀 Ask Bhorsha-Pay AI!",
       "💡 Need guidance?",
-      "🤖 Chat with your AI Guru!",
+      "🤖 Chat with your AI Assistant!",
     ];
     let index = 0;
     const interval = setInterval(() => {
@@ -63,11 +63,10 @@ const Chatbot_Assistant = () => {
     script.domain = "www.chatbase.co";
     document.body.appendChild(script);
 
-    // Wait for Chatbase to load, then hide its default button
     setTimeout(() => {
       const chatbaseButton = document.querySelector("iframe[title='Chatbot']");
-      if (chatbaseButton) chatbaseButton.style.display = "none"; // Hides default Chatbase button
-    }, 2000); // Give it 2 seconds to ensure it's loaded before hiding
+      if (chatbaseButton) chatbaseButton.style.display = "none";
+    }, 2000);
 
     return () => {
       document.body.removeChild(script);
@@ -106,7 +105,7 @@ const Chatbot_Assistant = () => {
             isDarkMode ? "text-[#9b73d3]" : "text-purple-600"
           }`}
         >
-          🚀 BhorshaPay AI Guru
+          🚀 Bhorsha-Pay AI
         </h1>
         <motion.p
           initial={{ opacity: 0 }}

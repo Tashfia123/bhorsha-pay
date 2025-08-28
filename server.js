@@ -5,6 +5,7 @@ import morgan from 'morgan';
 import connectDB from './config/db.js';
 import authRoutes from './routes/authRoutes.js'
 import blogRoutes from './routes/blogRoutes.js'
+import adminRoutes from "./routes/adminRoutes.js";
 
 import cors from 'cors'
 import path from 'path';
@@ -32,7 +33,8 @@ app.use(morgan("dev"));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.use("/api/v1/auth", authRoutes);
-app.use("/api/v1/blogs", blogRoutes);
+app.use("/api/v1/blog", blogRoutes);
+app.use("/api/v1/admin", adminRoutes); // Add admin routes
 
 
 app.get('/', (req,res)=>{

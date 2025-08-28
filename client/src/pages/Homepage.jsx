@@ -101,7 +101,7 @@ const Homepage = () => {
             Revolutionizing Fundraising with Blockchain Technology
           </motion.p>
 
-          <motion.p
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
@@ -119,7 +119,7 @@ const Homepage = () => {
                 <div className="w-8 h-0.5 bg-[#00A86B]"></div>
               </div>
             </div>
-          </motion.p>
+          </motion.div>
 
           {/* Call to Action Buttons */}
           <motion.div

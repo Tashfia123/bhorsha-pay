@@ -47,8 +47,14 @@ const Login = () => {
     setIsSubmitted(true);
 
     try {
-      await login(formData.email, formData.password);
-      navigate("/");
+      const user = await login(formData.email, formData.password);
+
+      // Check if user is admin and redirect accordingly
+      if (user && user.role === 1) {
+        navigate("/admin");
+      } else {
+        navigate("/");
+      }
     } catch (err) {
       setError(err.toString());
       setIsSubmitted(false);

@@ -1,12 +1,14 @@
 {
   "dependencies": {
     "@auth0/auth0-react": "^2.2.4",
+    "@google-cloud/local-auth": "^3.0.1",
     "axios": "^1.8.3",
     "bcrypt": "^5.1.1",
     "bcryptjs": "^3.0.2",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
+    "google-auth-library": "^10.3.0",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.18.0",
     "mongoose": "^8.12.1",

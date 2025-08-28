@@ -27,6 +27,7 @@ import {
   BlogDetail,
   CreateBlog,
   CryptoDashboard,
+  AdminDashboard,
 } from "./pages";
 
 const App = () => {
@@ -61,6 +62,22 @@ const App = () => {
       );
     }
     return user ? children : <Navigate to="/login" />;
+  };
+
+  // Admin Route - only accessible by admin users
+  const AdminRoute = ({ children }) => {
+    if (loading) {
+      return (
+        <div
+          className={`flex items-center justify-center min-h-screen ${
+            isDarkMode ? "bg-gray-900 text-white" : "bg-gray-100 text-black"
+          }`}
+        >
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+        </div>
+      );
+    }
+    return user && user.role === 1 ? children : <Navigate to="/login" />;
   };
 
   if (error) {
@@ -120,34 +137,89 @@ const App = () => {
       {/* Main Content */}
       <div className="flex-1 max-sm:w-full max-w-[1600px] mx-auto sm:pr-5">
         <Navbar />
-
         <Routes>
+          {/* Public Routes */}
           <Route path="/" element={<Homepage />} />
-          <Route path="/ai" element={<ChatbotPage />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/search" element={<SearchResults />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/donated-campaigns" element={<DonatedCampaignsPage />} />
-          <Route path="/bookmarks" element={<BookmarkedCampaigns />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/create-campaign" element={<CreateCampaign />} />
-          <Route path="/campaign-details/:id" element={<CampaignDetails />} />
-          <Route path="/chatbot" element={<Chatbot_Assistant />} />
-          <Route path="/crypto-rates" element={<CryptoRates />} />
-          <Route path="/crypto-news" element={<CryptoNews />} />
-          <Route path="/blogs" element={<BlogList />} />
-          <Route path="/blog/:id" element={<BlogDetail />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password/:token" element={<ResetPassword />} />
+
+          {/* Protected Routes */}
           <Route
-            path="/create-blog"
+            path="/home"
+            element={user ? <Home /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/profile"
+            element={user ? <Profile /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/create-campaign"
+            element={user ? <CreateCampaign /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/campaign-details/:id"
+            element={user ? <CampaignDetails /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/donated-campaigns"
+            element={user ? <DonatedCampaignsPage /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/dashboard"
+            element={user ? <Dashboard /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/admin"
             element={
-              <PrivateRoute>
-                <CreateBlog />
-              </PrivateRoute>
+              <AdminRoute>
+                <AdminDashboard />
+              </AdminRoute>
             }
           />
-          {/* Redirect any unmatched routes to login if not authenticated */}
-          <Route path="*" element={<Navigate to={user ? "/" : "/login"} />} />
+          <Route
+            path="/chatbot"
+            element={user ? <ChatbotPage /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/bookmarked"
+            element={user ? <BookmarkedCampaigns /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/crypto-rates"
+            element={user ? <CryptoRates /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/crypto-news"
+            element={user ? <CryptoNews /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/search"
+            element={user ? <SearchResults /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/blogs"
+            element={user ? <BlogList /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/blog/:id"
+            element={user ? <BlogDetail /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/create-blog"
+            element={user ? <CreateBlog /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/crypto-dashboard"
+            element={user ? <CryptoDashboard /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/chatbot-assistant"
+            element={user ? <Chatbot_Assistant /> : <Navigate to="/login" />}
+          />
         </Routes>
+        ;
       </div>
     </div>
   );

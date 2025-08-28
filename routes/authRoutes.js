@@ -1,64 +1,55 @@
 import express from "express";
-import {registerController, loginController, forgotPasswordController, resetPasswordController, getCryptoRatesController, getCryptoNewsController} from '../controller/authController.js'
-import userModel from "../models/userModel.js";
+import {
+  registerController,
+  loginController,
+  forgotPasswordController,
+  resetPasswordController,
+  getCryptoRates,
+  getCryptoNews,
+  userAuthController,
+  getUserProfile,
+} from "../controller/authController.js";
+import { requireSignIn } from "../middlewares/authMiddleware.js";
 import upload from "../middlewares/uploadMiddleware.js";
 import multer from "multer";
+import path from "path";
 
-import { requireSignIn } from "../middlewares/authMiddleware.js";
-const router = express.Router()
+const router = express.Router();
 
 // Error handling middleware for multer
 const handleMulterError = (error, req, res, next) => {
   if (error instanceof multer.MulterError) {
-    if (error.code === 'LIMIT_FILE_SIZE') {
+    if (error.code === "LIMIT_FILE_SIZE") {
       return res.status(400).send({
         success: false,
-        message: 'File too large. Maximum size is 10MB'
+        message: "File too large. Maximum size is 10MB",
       });
     }
     return res.status(400).send({
       success: false,
-      message: 'File upload error: ' + error.message
+      message: "File upload error: " + error.message,
     });
   } else if (error) {
     return res.status(400).send({
       success: false,
-      message: error.message
+      message: error.message,
     });
   }
   next();
 };
 
-router.post('/register', upload.single('nid'), handleMulterError, registerController)
+router.post(
+  "/register",
+  upload.single("nid"),
+  handleMulterError,
+  registerController
+);
 router.post("/login", loginController);
 router.post("/forgot-password", forgotPasswordController);
-router.post("/reset-password/:token", resetPasswordController);
-router.get("/crypto-rates", getCryptoRatesController);
-router.get("/crypto-news", getCryptoNewsController);
-router.get("/user-auth", requireSignIn, (req, res) => {
-    res.status(200).send({ ok: true });
-});
+router.post("/reset-password", resetPasswordController);
+router.get("/crypto-rates", getCryptoRates);
+router.get("/crypto-news", getCryptoNews);
+router.get("/user-auth", requireSignIn, userAuthController);
+router.get("/me", requireSignIn, getUserProfile);
 
-// The client is calling /auth/users/me but our route is at /users/me
-// Move this route to match the client's expectation
-router.get("/me", requireSignIn, async (req, res) => {
-    try {
-        const user = await userModel.findById(req.user._id).select("-password");
-        if (!user) {
-            return res.status(404).send({
-                success: false,
-                message: "User not found"
-            });
-        }
-        res.status(200).send(user);
-    } catch (error) {
-        console.log(error);
-        res.status(500).send({
-            success: false,
-            message: "Error fetching user data",
-            error,
-        });
-    }
-});
-
-export default router
+export default router;

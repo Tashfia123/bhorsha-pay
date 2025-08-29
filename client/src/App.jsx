@@ -187,6 +187,10 @@ const App = () => {
             element={user ? <BookmarkedCampaigns /> : <Navigate to="/login" />}
           />
           <Route
+            path="/bookmarks"
+            element={user ? <BookmarkedCampaigns /> : <Navigate to="/login" />}
+          />
+          <Route
             path="/crypto-rates"
             element={user ? <CryptoRates /> : <Navigate to="/login" />}
           />
@@ -219,7 +223,6 @@ const App = () => {
             element={user ? <Chatbot_Assistant /> : <Navigate to="/login" />}
           />
         </Routes>
-        ;
       </div>
     </div>
   );

@@ -92,7 +92,7 @@ const Homepage = () => {
             className="mb-6 relative"
           >
             <h1 className="text-5xl sm:text-7xl lg:text-8xl font-display text-transparent bg-clip-text bg-gradient-to-r from-white to-[#00A86B]">
-              Bhorsha-Pay
+              {t("homepage.brand_name")}
             </h1>
           </motion.div>
 

@@ -1946,8 +1946,8 @@ const AdminDashboard = () => {
                <span>Jan 20</span>
                <span>Jan 30</span>
              </div>
-           </div>
-        </motion.div>
+        </div>
+      </motion.div>
 
                  {/* Weekly Activity Mini Chart */}
          <motion.div
@@ -2180,12 +2180,12 @@ const AdminDashboard = () => {
                    <div className="flex justify-between items-center">
                      <span className={`text-sm font-medium ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}>
                        {data.flag}
-                     </span>
+                </span>
                      <span className="font-semibold text-red-500 text-lg">
                        {data.count}
                 </span>
 
-                   </div>
+              </div>
                    <div className={`w-full rounded-full h-3 ${isDarkMode ? "bg-gray-700" : "bg-gray-200"}`}>
                      <div
                        className="h-3 rounded-full transition-all duration-500 shadow-sm"
@@ -2279,7 +2279,7 @@ const AdminDashboard = () => {
 
         </motion.div>
 
-    </div>
+      </div>
 
   );
 

@@ -33,7 +33,7 @@ app.use(morgan("dev"));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.use("/api/v1/auth", authRoutes);
-app.use("/api/v1/blog", blogRoutes);
+app.use("/api/v1/blogs", blogRoutes);
 app.use("/api/v1/admin", adminRoutes); // Add admin routes
 
 

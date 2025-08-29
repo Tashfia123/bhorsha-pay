@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import video1 from "../assets/video1.mp4";
 import video2 from "../assets/video2.mp4";
+import { useLanguage } from "../context/LanguageContext";
 
 const Homepage = () => {
   const containerRef = useRef(null);
@@ -15,6 +16,7 @@ const Homepage = () => {
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const { language, toggleLanguage, t } = useLanguage();
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -33,6 +35,8 @@ const Homepage = () => {
       ref={containerRef}
       className="relative min-h-screen bg-gradient-to-b from-[#0f172a] to-[#1e293b] overflow-hidden"
     >
+
+
       {/* Animated Background */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,168,107,0.1),transparent_50%)]"></div>
@@ -98,7 +102,7 @@ const Homepage = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-xl sm:text-2xl lg:text-3xl font-heading text-transparent bg-clip-text bg-gradient-to-r from-gray-300 to-white mb-8"
           >
-            Revolutionizing Fundraising with Blockchain Technology
+            {t("homepage.tagline")}
           </motion.p>
 
           <motion.div
@@ -109,12 +113,12 @@ const Homepage = () => {
           >
             <div className="text-center space-y-3">
               <h3 className="text-2xl font-bold text-white">
-                Bangladesh Deserves Trust
+                {t("homepage.bangladesh_trust")}
               </h3>
               <div className="flex items-center justify-center gap-3">
                 <div className="w-8 h-0.5 bg-[#00A86B]"></div>
                 <span className="text-lg font-semibold text-[#00A86B]">
-                  We Deliver It
+                  {t("homepage.we_deliver")}
                 </span>
                 <div className="w-8 h-0.5 bg-[#00A86B]"></div>
               </div>
@@ -134,7 +138,7 @@ const Homepage = () => {
                 whileHover={{ scale: 1.05 }}
                 className="text-xl font-semibold text-[#00A86B] mb-6 text-center bg-white/5 py-3 rounded-lg backdrop-blur-sm border border-white/10 shadow-lg"
               >
-                Crypto Resources
+                {t("homepage.crypto_resources")}
               </motion.h3>
               <div className="flex flex-wrap justify-center gap-6">
                 <Link
@@ -143,7 +147,7 @@ const Homepage = () => {
                 >
                   <span className="relative z-10 text-white font-semibold text-lg flex items-center gap-2">
                     <span className="text-2xl">📊</span>
-                    Crypto Rates
+                    {t("homepage.crypto_rates")}
                   </span>
                   <div className="absolute inset-0 bg-gradient-to-r from-[#008F5B] to-[#00A86B] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -154,7 +158,7 @@ const Homepage = () => {
                 >
                   <span className="relative z-10 text-white font-semibold text-lg flex items-center gap-2">
                     <span className="text-2xl">📰</span>
-                    Crypto News
+                    {t("homepage.crypto_news")}
                   </span>
                   <div className="absolute inset-0 bg-gradient-to-r from-[#008F5B] to-[#00A86B] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -224,10 +228,10 @@ const Homepage = () => {
                 🔒
               </div>
               <h3 className="text-2xl font-semibold text-white mb-4">
-                Secure Transactions
+                {t("homepage.secure_transactions")}
               </h3>
               <p className="text-gray-400 leading-relaxed">
-                Every donation is secured by blockchain technology
+                {t("homepage.secure_description")}
               </p>
             </motion.div>
             <motion.div
@@ -239,10 +243,10 @@ const Homepage = () => {
                 👥
               </div>
               <h3 className="text-2xl font-semibold text-white mb-4">
-                Community Driven
+                {t("homepage.community_driven")}
               </h3>
               <p className="text-gray-400 leading-relaxed">
-                Join a global community of funders and creators
+                {t("homepage.community_description")}
               </p>
             </motion.div>
             <motion.div
@@ -254,10 +258,10 @@ const Homepage = () => {
                 💎
               </div>
               <h3 className="text-2xl font-semibold text-white mb-4">
-                Transparent
+                {t("homepage.transparent")}
               </h3>
               <p className="text-gray-400 leading-relaxed">
-                Track every transaction on the blockchain
+                {t("homepage.transparent_description")}
               </p>
             </motion.div>
           </div>
@@ -281,7 +285,7 @@ const Homepage = () => {
               <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#00A86B] to-[#4acd8d] mb-4">
                 $10M+
               </div>
-              <div className="text-gray-400 text-lg">Total Funds Raised</div>
+              <div className="text-gray-400 text-lg">{t("homepage.total_funds")}</div>
             </motion.div>
             <motion.div
               className="text-center p-6 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 shadow-xl hover:shadow-2xl transition-all duration-300"
@@ -291,7 +295,7 @@ const Homepage = () => {
               <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#00A86B] to-[#4acd8d] mb-4">
                 500+
               </div>
-              <div className="text-gray-400 text-lg">Active Campaigns</div>
+              <div className="text-gray-400 text-lg">{t("homepage.active_campaigns")}</div>
             </motion.div>
             <motion.div
               className="text-center p-6 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 shadow-xl hover:shadow-2xl transition-all duration-300"
@@ -301,7 +305,7 @@ const Homepage = () => {
               <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#00A86B] to-[#4acd8d] mb-4">
                 50K+
               </div>
-              <div className="text-gray-400 text-lg">Community Members</div>
+              <div className="text-gray-400 text-lg">{t("homepage.community_members")}</div>
             </motion.div>
             <motion.div
               className="text-center p-6 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 shadow-xl hover:shadow-2xl transition-all duration-300"
@@ -311,7 +315,7 @@ const Homepage = () => {
               <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#00A86B] to-[#4acd8d] mb-4">
                 99.9%
               </div>
-              <div className="text-gray-400 text-lg">Success Rate</div>
+              <div className="text-gray-400 text-lg">{t("homepage.success_rate")}</div>
             </motion.div>
           </div>
         </div>
@@ -332,11 +336,10 @@ const Homepage = () => {
             className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 shadow-2xl"
           >
             <h2 className="text-3xl font-bold text-white mb-4">
-              Blockchain Transparency
+              {t("homepage.blockchain_transparency")}
             </h2>
             <p className="text-gray-400 text-lg mb-8">
-              View all transactions and verify smart contract activity on the
-              Ethereum blockchain
+              {t("homepage.blockchain_description")}
             </p>
             <motion.button
               whileHover={{ scale: 1.05 }}
@@ -345,7 +348,7 @@ const Homepage = () => {
               className="bg-gradient-to-r from-[#00A86B] to-[#4acd8d] text-white font-semibold py-4 px-8 rounded-xl hover:from-[#009a5f] hover:to-[#3dbd7d] transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center space-x-3 mx-auto text-lg"
             >
               <span>🔍</span>
-              <span>Open Etherscan</span>
+                              <span>{t("homepage.open_etherscan")}</span>
             </motion.button>
           </motion.div>
         </div>
@@ -353,7 +356,7 @@ const Homepage = () => {
 
       {/* Footer */}
       <footer className="relative w-full py-8 text-center text-gray-400 text-sm border-t border-white/10">
-        <p>© 2025 Bhorsha Pay. All Rights Reserved.</p>
+        <p>{t("homepage.footer_copyright")}</p>
       </footer>
     </div>
   );

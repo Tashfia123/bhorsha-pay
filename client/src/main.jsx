@@ -6,6 +6,7 @@ import "./index.css";
 import { StateContextProvider } from "./context";
 import { ThemeProvider } from "./context/ThemeContext";
 import { AuthProvider } from "./context/AuthContext";
+import { LanguageProvider } from "./context/LanguageContext";
 import App from "./App";
 import { Sepolia } from "@thirdweb-dev/chains";
 
@@ -20,7 +21,9 @@ root.render(
       <StateContextProvider>
         <ThemeProvider>
           <AuthProvider>
-            <App />
+            <LanguageProvider>
+              <App />
+            </LanguageProvider>
           </AuthProvider>
         </ThemeProvider>
       </StateContextProvider>

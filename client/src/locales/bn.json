@@ -1,7 +1,36 @@
 {
   "common": {
     "connect": "সংযোগ করুন",
-    "create_campaign": "ক্যাম্পেইন তৈরি করুন",
-    "donate": "দান করুন"
+          "create_campaign": "ক্যাম্পেইন তৈরি করুন",
+      "donate": "দান করুন"
+    },
+    "homepage": {
+      "tagline": "ব্লকচেইন প্রযুক্তি দিয়ে তহবিল সংগ্রহে বিপ্লব",
+      "bangladesh_trust": "বাংলাদেশের বিশ্বাস পাওয়ার যোগ্য",
+      "we_deliver": "আমরা তা বাস্তবায়ন করি",
+      "crypto_resources": "ক্রিপ্টো সম্পদ",
+      "crypto_rates": "ক্রিপ্টো হার",
+      "crypto_news": "ক্রিপ্টো সংবাদ",
+      "total_funds": "মোট তহবিল সংগ্রহ",
+      "active_campaigns": "সক্রিয় ক্যাম্পেইন",
+      "community_members": "সম্প্রদায়ের সদস্য",
+      "success_rate": "সাফল্যের হার",
+      "blockchain_transparency": "ব্লকচেইন স্বচ্ছতা",
+      "blockchain_description": "সমস্ত লেনদেন দেখুন এবং ইথেরিয়াম ব্লকচেইনে স্মার্ট কন্ট্রাক্ট কার্যক্রম যাচাই করুন",
+      "open_etherscan": "ইথারস্ক্যান খুলুন",
+      "footer_copyright": "© ২০২৫ ভরসা পে। সর্বস্বত্ব সংরক্ষিত।",
+      "secure_transactions": "নিরাপদ লেনদেন",
+      "secure_description": "প্রতিটি অনুদান ব্লকচেইন প্রযুক্তি দ্বারা সুরক্ষিত",
+      "community_driven": "সম্প্রদায়-চালিত",
+      "community_description": "তহবিল সংগ্রহকারী এবং স্রষ্টাদের একটি বিশ্বব্যাপী সম্প্রদায়ে যোগ দিন",
+      "transparent": "স্বচ্ছ",
+      "transparent_description": "ব্লকচেইনে প্রতিটি লেনদেন ট্র্যাক করুন"
+    },
+    "header": {
+      "search_placeholder": "ক্যাম্পেইন খুঁজুন",
+      "create_campaign": "ক্যাম্পেইন তৈরি করুন",
+      "log_out": "লগ আউট",
+      "log_in": "লগ ইন",
+      "register": "নিবন্ধন"
+    }
   }
-}

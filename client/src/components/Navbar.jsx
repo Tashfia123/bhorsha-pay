@@ -6,6 +6,7 @@ import { navlinks } from "../constants";
 import { ThemeToggle } from "./index";
 import { useTheme } from "../context/ThemeContext";
 import { useAuth } from "../context/AuthContext";
+import { useLanguage } from "../context/LanguageContext";
 import { FaInfoCircle } from "react-icons/fa";
 
 const Navbar = () => {
@@ -16,6 +17,7 @@ const Navbar = () => {
   const { connect, address } = useStateContext();
   const { isDarkMode } = useTheme();
   const { user, logout } = useAuth();
+  const { language, toggleLanguage, t } = useLanguage();
   
   // Check if user is logged in using AuthContext
   const isAuthenticated = !!user;
@@ -42,7 +44,7 @@ const Navbar = () => {
       <div className={`lg:flex-1 flex flex-row max-w-[458px] py-2 pl-4 pr-2 h-[52px] ${isDarkMode ? 'bg-[#1c1c24]' : 'bg-white border border-gray-200'} rounded-[100px]`}>
         <input
           type="text"
-          placeholder="Search for campaigns"
+          placeholder={t("header.search_placeholder")}
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           className={`flex w-full font-epilogue font-normal text-[14px] placeholder:text-[#4b5264] ${isDarkMode ? 'text-white' : 'text-gray-700'} bg-transparent outline-none`}
@@ -63,6 +65,15 @@ const Navbar = () => {
       <div className="sm:flex hidden flex-row justify-end gap-4 items-center">
         <ThemeToggle />
         
+        {/* Language Toggle Button */}
+        <button
+          onClick={toggleLanguage}
+          className="px-3 py-1.5 text-xs rounded-lg font-medium bg-gradient-to-r from-[#00A86B] to-[#4acd8d] text-white shadow-lg hover:shadow-xl transition-all duration-300"
+          title={language === "en" ? "বাংলায় পরিবর্তন করুন" : "Switch to English"}
+        >
+          {language === "en" ? "বাং" : "EN"}
+        </button>
+        
         <button
           onClick={handleShowWelcome}
           className={`${isDarkMode ? 'text-gray-400 hover:text-white' : 'text-gray-500 hover:text-gray-700'} p-1.5 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-200`}
@@ -77,7 +88,7 @@ const Navbar = () => {
             address ? "bg-[#1dc071]" : "bg-[#8c6dfd]"
           } text-white px-4 py-2 rounded-[10px] font-epilogue font-medium`}
         >
-          {address ? "Create a campaign" : "Connect"}
+          {address ? t("header.create_campaign") : "Connect"}
         </button>
 
         {/* Show Login/Register or Logout based on auth state */}
@@ -86,18 +97,18 @@ const Navbar = () => {
             onClick={handleLogout}
             className="bg-[#ff4d4d] text-white px-4 py-2 rounded-[10px] font-epilogue font-medium"
           >
-            Log Out
+            {t("header.log_out")}
           </button>
         ) : (
           <>
             <Link to="/login">
               <button className="bg-[#6a5acd] text-white px-4 py-2 rounded-[10px] font-epilogue font-medium">
-                Log In
+                {t("header.log_in")}
               </button>
             </Link>
             <Link to="/register">
               <button className="bg-[#4acd8d] text-white px-4 py-2 rounded-[10px] font-epilogue font-medium">
-                Register
+                {t("header.register")}
               </button>
             </Link>
           </>
@@ -168,6 +179,15 @@ const Navbar = () => {
           </ul>
 
           <div className="flex mx-4 gap-4">
+            {/* Language Toggle Button for Mobile */}
+            <button
+              onClick={toggleLanguage}
+              className="px-3 py-2 text-xs rounded-lg font-medium bg-gradient-to-r from-[#00A86B] to-[#4acd8d] text-white shadow-lg hover:shadow-xl transition-all duration-300"
+              title={language === "en" ? "বাংলায় পরিবর্তন করুন" : "Switch to English"}
+            >
+              {language === "en" ? "বাং" : "EN"}
+            </button>
+            
             <button
               onClick={() =>
                 address ? navigate("create-campaign") : connect()
@@ -176,7 +196,7 @@ const Navbar = () => {
                 address ? "bg-[#1dc071]" : "bg-[#8c6dfd]"
               } text-white px-4 py-2 rounded-[10px] font-epilogue font-medium`}
             >
-              {address ? "Create a campaign" : "Connect"}
+              {address ? t("header.create_campaign") : "Connect"}
             </button>
 
             {isAuthenticated ? (
@@ -184,18 +204,18 @@ const Navbar = () => {
                 onClick={handleLogout}
                 className="bg-[#ff4d4d] text-white px-4 py-2 rounded-[10px] font-epilogue font-medium"
               >
-                Log Out
+                {t("header.log_out")}
               </button>
             ) : (
               <>
                 <Link to="/login">
                   <button className="bg-[#6a5acd] text-white px-4 py-2 rounded-[10px] font-epilogue font-medium">
-                    Log In
+                    {t("header.log_in")}
                   </button>
                 </Link>
                 <Link to="/register">
                   <button className="bg-[#4acd8d] text-white px-4 py-2 rounded-[10px] font-epilogue font-medium">
-                    Register
+                    {t("header.register")}
                   </button>
                 </Link>
               </>

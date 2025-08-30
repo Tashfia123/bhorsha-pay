@@ -99,10 +99,13 @@ export const deleteBlog = async (id) => {
 
 export const addComment = async (blogId, content) => {
   try {
+    console.log('Adding comment to blog:', blogId, 'Content:', content);
     const response = await API.post(`/blogs/${blogId}/comment`, { content });
+    console.log('Comment response:', response.data);
     return response.data.blog;
   } catch (error) {
     console.error('Error adding comment:', error);
+    console.error('Error details:', error.response?.data);
     throw error;
   }
 };

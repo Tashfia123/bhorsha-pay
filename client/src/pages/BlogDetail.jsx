@@ -43,19 +43,28 @@ const BlogDetail = () => {
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
     
+    console.log('Comment submit triggered');
+    console.log('Token:', token);
+    console.log('Comment:', comment);
+    console.log('Blog ID:', id);
+    
     if (!token) {
+      console.log('No token, redirecting to login');
       navigate('/login?redirect=/blog/' + id);
       return;
     }
     
     if (!comment.trim()) {
+      console.log('Empty comment, returning');
       return;
     }
     
     try {
       setCommentLoading(true);
+      console.log('Calling addComment API...');
       // Add comment to blog
       const updatedBlog = await addComment(id, comment);
+      console.log('Comment added successfully:', updatedBlog);
       
       // Update blog state
       setBlog(updatedBlog);
@@ -63,6 +72,7 @@ const BlogDetail = () => {
       setComment('');
     } catch (error) {
       console.error('Error adding comment:', error);
+      console.error('Full error object:', error);
     } finally {
       setCommentLoading(false);
     }

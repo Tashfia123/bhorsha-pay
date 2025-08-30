@@ -18,15 +18,48 @@ const CryptoNews = () => {
     try {
       setLoading(true);
       setError(null);
-      const response = await axios.get('http://localhost:8080/api/v1/auth/crypto-news');
-      if (response.data.success) {
-        setNewsData(response.data.data);
-      } else {
-        setError('Failed to fetch news');
+      
+      // Try backend first
+      try {
+        const response = await axios.get('http://localhost:8080/api/v1/auth/crypto-news');
+        if (response.data.success) {
+          setNewsData(response.data.data);
+          setLoading(false);
+          return;
+        }
+      } catch (backendError) {
+        console.log('Backend not available, using direct API...');
       }
+      
+      // Fallback to direct CryptoCompare API
+      const response = await axios.get(
+        'https://min-api.cryptocompare.com/data/v2/news/',
+        {
+          params: {
+            categories: 'Cryptocurrency,Blockchain',
+            excludeCategories: 'Sponsored',
+            lang: 'EN',
+            sortOrder: 'latest',
+          },
+        }
+      );
+
+      const newsData = response.data.Data.map((article) => ({
+        id: article.id,
+        title: article.title,
+        body: article.body,
+        source: article.source,
+        url: article.url,
+        imageUrl: article.imageurl,
+        publishedOn: article.published_on,
+        categories: article.categories,
+        sourceInfo: article.source_info,
+      }));
+
+      setNewsData(newsData);
     } catch (error) {
       console.error('Error fetching news:', error);
-      setError(error.response?.data?.message || 'Error fetching news. Please try again later.');
+      setError('Error fetching news. Please try again later.');
     } finally {
       setLoading(false);
     }

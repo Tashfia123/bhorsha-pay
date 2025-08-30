@@ -25,6 +25,8 @@ import {
   BlogDetail,
   CreateBlog,
   AdminDashboard,
+  CryptoRates,
+  CryptoNews,
 } from "./pages";
 
 const App = () => {
@@ -208,6 +210,14 @@ const App = () => {
           <Route
             path="/chatbot-assistant"
             element={user ? <Chatbot_Assistant /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/crypto-rates"
+            element={user ? <CryptoRates /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/crypto-news"
+            element={user ? <CryptoNews /> : <Navigate to="/login" />}
           />
         </Routes>
       </div>

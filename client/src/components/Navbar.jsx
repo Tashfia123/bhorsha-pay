@@ -7,13 +7,14 @@ import { ThemeToggle } from "./index";
 import { useTheme } from "../context/ThemeContext";
 import { useAuth } from "../context/AuthContext";
 import { useLanguage } from "../context/LanguageContext";
-import { FaInfoCircle } from "react-icons/fa";
+import { FaInfoCircle, FaCaretDown, FaBitcoin, FaNewspaper } from "react-icons/fa";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState(""); // State for search query
   const [isActive, setIsActive] = useState("dashboard");
   const [toggleDrawer, setToggleDrawer] = useState(false);
+  const [showCryptoDropdown, setShowCryptoDropdown] = useState(false);
   const { connect, address } = useStateContext();
   const { isDarkMode } = useTheme();
   const { user, logout } = useAuth();
@@ -38,6 +39,18 @@ const Navbar = () => {
       window.showWelcomePopup();
     }
   };
+
+  // Close crypto dropdown when clicking outside
+  React.useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (showCryptoDropdown && !event.target.closest('.crypto-dropdown')) {
+        setShowCryptoDropdown(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [showCryptoDropdown]);
 
   return (
     <div className="flex md:flex-row flex-col-reverse justify-between mb-[35px] gap-6">
@@ -81,6 +94,43 @@ const Navbar = () => {
         >
           <FaInfoCircle size={16} />
         </button>
+
+        {/* Crypto Resources Dropdown */}
+        <div className="relative crypto-dropdown">
+          <button
+            onClick={() => setShowCryptoDropdown(!showCryptoDropdown)}
+            className={`${isDarkMode ? 'text-gray-300 hover:text-white' : 'text-gray-700 hover:text-gray-900'} px-4 py-2 rounded-lg font-medium flex items-center gap-2 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200`}
+            title="Crypto Resources"
+          >
+            <FaBitcoin className="text-yellow-500" />
+            <span className="hidden lg:inline">Crypto Resources</span>
+            <FaCaretDown className={`transition-transform duration-200 ${showCryptoDropdown ? 'rotate-180' : ''}`} />
+          </button>
+
+          {/* Dropdown Menu */}
+          {showCryptoDropdown && (
+            <div className={`absolute top-full right-0 mt-2 w-48 rounded-lg shadow-lg border ${isDarkMode ? 'bg-[#1c1c24] border-gray-700' : 'bg-white border-gray-200'} z-50`}>
+              <div className="py-2">
+                <Link
+                  to="/crypto-rates"
+                  onClick={() => setShowCryptoDropdown(false)}
+                  className={`flex items-center gap-3 px-4 py-2 text-sm ${isDarkMode ? 'text-gray-300 hover:bg-gray-800 hover:text-white' : 'text-gray-700 hover:bg-gray-100'} transition-colors duration-200`}
+                >
+                  <FaBitcoin className="text-yellow-500" />
+                  Crypto Rates
+                </Link>
+                <Link
+                  to="/crypto-news"
+                  onClick={() => setShowCryptoDropdown(false)}
+                  className={`flex items-center gap-3 px-4 py-2 text-sm ${isDarkMode ? 'text-gray-300 hover:bg-gray-800 hover:text-white' : 'text-gray-700 hover:bg-gray-100'} transition-colors duration-200`}
+                >
+                  <FaNewspaper className="text-blue-500" />
+                  Crypto News
+                </Link>
+              </div>
+            </div>
+          )}
+        </div>
 
         <button
           onClick={() => (address ? navigate("create-campaign") : connect())}
@@ -187,6 +237,22 @@ const Navbar = () => {
             >
               {language === "en" ? "বাং" : "EN"}
             </button>
+
+            {/* Crypto Resources for Mobile */}
+            <div className="flex flex-col gap-2">
+              <Link to="/crypto-rates">
+                <button className="w-full px-3 py-2 text-xs rounded-lg font-medium bg-yellow-500 text-white shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2">
+                  <FaBitcoin />
+                  Rates
+                </button>
+              </Link>
+              <Link to="/crypto-news">
+                <button className="w-full px-3 py-2 text-xs rounded-lg font-medium bg-blue-500 text-white shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2">
+                  <FaNewspaper />
+                  News
+                </button>
+              </Link>
+            </div>
             
             <button
               onClick={() =>

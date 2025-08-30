@@ -19,14 +19,11 @@ import {
   Login,
   ChatbotPage,
   BookmarkedCampaigns,
-  CryptoRates,
-  CryptoNews,
   ForgotPassword,
   ResetPassword,
   BlogList,
   BlogDetail,
   CreateBlog,
-  CryptoDashboard,
   AdminDashboard,
 } from "./pages";
 
@@ -190,14 +187,7 @@ const App = () => {
             path="/bookmarks"
             element={user ? <BookmarkedCampaigns /> : <Navigate to="/login" />}
           />
-          <Route
-            path="/crypto-rates"
-            element={user ? <CryptoRates /> : <Navigate to="/login" />}
-          />
-          <Route
-            path="/crypto-news"
-            element={user ? <CryptoNews /> : <Navigate to="/login" />}
-          />
+
           <Route
             path="/search"
             element={user ? <SearchResults /> : <Navigate to="/login" />}
@@ -214,10 +204,7 @@ const App = () => {
             path="/create-blog"
             element={user ? <CreateBlog /> : <Navigate to="/login" />}
           />
-          <Route
-            path="/crypto-dashboard"
-            element={user ? <CryptoDashboard /> : <Navigate to="/login" />}
-          />
+
           <Route
             path="/chatbot-assistant"
             element={user ? <Chatbot_Assistant /> : <Navigate to="/login" />}

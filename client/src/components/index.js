@@ -20,3 +20,6 @@ export { default as RecentProjects } from './RecentProjects';
 export { default as CampaignStats } from './CampaignStats';
 export { default as NIDValidation } from './NIDValidation';
 export { default as ManualVerification } from './ManualVerification';
+export { default as BkashPayment } from './BkashPayment';
+export { default as Toast } from './Toast';
+export { default as MarqueeStrip } from './MarqueeStrip';

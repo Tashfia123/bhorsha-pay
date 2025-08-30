@@ -4,6 +4,7 @@ import { useRef, useEffect, useState } from "react";
 import video1 from "../assets/video1.mp4";
 import video2 from "../assets/video2.mp4";
 import { useLanguage } from "../context/LanguageContext";
+import { MarqueeStrip } from "../components";
 
 const Homepage = () => {
   const containerRef = useRef(null);
@@ -17,6 +18,20 @@ const Homepage = () => {
 
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const { language, toggleLanguage, t } = useLanguage();
+
+  // Relief images for the marquee
+  const RELIEF_IMAGES = [
+    '/01.webp',
+    '/02.webp',
+    '/03.webp',
+    '/04.webp',
+    '/05.webp',
+    '/06.webp',
+    '/07.webp',
+    '/08.webp',
+    '/09.webp',
+    '/10.webp',
+  ];
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -132,40 +147,41 @@ const Homepage = () => {
             transition={{ duration: 0.8, delay: 0.8 }}
             className="flex flex-col items-center"
           >
-            {/* Crypto Resources */}
-            <div className="w-full max-w-3xl">
-              <motion.h3
-                whileHover={{ scale: 1.05 }}
-                className="text-xl font-semibold text-[#00A86B] mb-6 text-center bg-white/5 py-3 rounded-lg backdrop-blur-sm border border-white/10 shadow-lg"
-              >
-                {t("homepage.crypto_resources")}
-              </motion.h3>
-              <div className="flex flex-wrap justify-center gap-6">
-                <Link
-                  to="/crypto-rates"
-                  className="group relative px-8 py-4 bg-gradient-to-r from-[#00A86B] to-[#008F5B] rounded-lg overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300"
-                >
-                  <span className="relative z-10 text-white font-semibold text-lg flex items-center gap-2">
-                    <span className="text-2xl">📊</span>
-                    {t("homepage.crypto_rates")}
-                  </span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#008F5B] to-[#00A86B] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                </Link>
-                <Link
-                  to="/crypto-news"
-                  className="group relative px-8 py-4 bg-gradient-to-r from-[#00A86B] to-[#008F5B] rounded-lg overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300"
-                >
-                  <span className="relative z-10 text-white font-semibold text-lg flex items-center gap-2">
-                    <span className="text-2xl">📰</span>
-                    {t("homepage.crypto_news")}
-                  </span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#008F5B] to-[#00A86B] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                </Link>
-              </div>
-            </div>
+
           </motion.div>
+        </motion.div>
+
+        {/* Marquee Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1 }}
+          className="mt-16"
+        >
+          <MarqueeStrip 
+            images={RELIEF_IMAGES}
+            speed={26}
+            height="h-64 md:h-72"
+            cardWidth="w-48 md:w-56"
+            gap="gap-5"
+          />
+        </motion.div>
+
+        {/* Relief in Action Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.2 }}
+          className="mt-16"
+        >
+          <div className="text-center">
+            <h2 className="text-3xl font-bold text-white mb-4">
+              {t("homepage.relief_in_action")}
+            </h2>
+            <p className="text-gray-400 w-full leading-relaxed text-justify">
+              {t("homepage.relief_description")}
+            </p>
+          </div>
         </motion.div>
 
         {/* Video Section */}

@@ -14,9 +14,6 @@ import {
 
 const router = express.Router();
 
-// Create a blog (protected)
-router.post("/create", requireSignIn, createBlogController);
-
 // Get all blogs (public)
 router.get("/all", getAllBlogsController);
 
@@ -28,6 +25,9 @@ router.get("/user/:userId", getUserBlogsController);
 
 // Get blogs by campaign ID (public)
 router.get("/campaign/:campaignId", getBlogsByCampaignController);
+
+// Create a blog (protected) - MUST come before /:id route
+router.post("/create", requireSignIn, createBlogController);
 
 // Get single blog (public)
 router.get("/:id", getSingleBlogController);

@@ -1,7 +1,39 @@
 {
   "common": {
     "connect": "Connect",
-    "create_campaign": "Create a Campaign",
-    "donate": "Donate"
+          "create_campaign": "Create a Campaign",
+      "donate": "Donate"
+    },
+    "homepage": {
+      "brand_name": "Bhorsha-Pay",
+      "tagline": "Revolutionizing Fundraising with Blockchain Technology",
+      "bangladesh_trust": "Bangladesh Deserves Trust",
+      "we_deliver": "We Deliver It",
+      "crypto_resources": "Crypto Resources",
+      "crypto_rates": "Crypto Rates",
+      "crypto_news": "Crypto News",
+      "total_funds": "Total Funds Raised",
+      "active_campaigns": "Active Campaigns",
+      "community_members": "Community Members",
+      "success_rate": "Success Rate",
+      "blockchain_transparency": "Blockchain Transparency",
+      "blockchain_description": "View all transactions and verify smart contract activity on the Ethereum blockchain",
+      "open_etherscan": "Open Etherscan",
+      "footer_copyright": "© 2025 Bhorsha Pay. All Rights Reserved.",
+      "secure_transactions": "Secure Transactions",
+      "secure_description": "Every donation is secured by blockchain technology",
+      "community_driven": "Community Driven",
+      "community_description": "Join a global community of funders and creators",
+      "transparent": "Transparent",
+      "transparent_description": "Track every transaction on the blockchain",
+      "relief_in_action": "Relief in Action",
+      "relief_description": "Bhorsha-Pay is a blockchain-based platform for emergency fundraising during floods, cyclones, and humanitarian crises in Bangladesh. We also support medical treatment, women empowerment, animal rescue, and startup development initiatives. Our platform ensures transparency, global access, and instant support for all humanitarian causes. Through our innovative blockchain technology, we connect donors worldwide directly to those in need, eliminating intermediaries and ensuring every contribution reaches its intended destination. Every transaction is recorded on the blockchain, providing complete transparency and building trust between donors and beneficiaries, making Bhorsha-Pay the most reliable platform for humanitarian aid in Bangladesh."
+    },
+    "header": {
+      "search_placeholder": "Search for campaigns",
+      "create_campaign": "Create a campaign",
+      "log_out": "Log Out",
+      "log_in": "Log In",
+      "register": "Register"
+    }
   }
-}

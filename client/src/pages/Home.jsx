@@ -19,7 +19,7 @@ const Home = () => {
 
   const fetchCampaigns = async () => {
     setIsLoading(true);
-    const data = await getCampaigns(contract);
+    const data = await getAllCampaigns(contract);
 
     setCampaigns(data);
 

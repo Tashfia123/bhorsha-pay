@@ -18,15 +18,48 @@ const CryptoRates = () => {
     try {
       setLoading(true);
       setError(null);
-      const response = await axios.get('http://localhost:8080/api/v1/auth/crypto-rates');
-      if (response.data.success) {
-        setCryptoData(response.data.data);
-      } else {
-        setError('Failed to fetch crypto rates');
+      
+      // Try backend first
+      try {
+        const response = await axios.get('http://localhost:8080/api/v1/auth/crypto-rates');
+        if (response.data.success) {
+          setCryptoData(response.data.data);
+          setLoading(false);
+          return;
+        }
+      } catch (backendError) {
+        console.log('Backend not available, using direct API...');
       }
+      
+      // Fallback to direct CoinGecko API
+      const response = await axios.get(
+        'https://api.coingecko.com/api/v3/coins/markets',
+        {
+          params: {
+            vs_currency: 'usd',
+            order: 'market_cap_desc',
+            per_page: 10,
+            page: 1,
+            sparkline: false,
+          },
+        }
+      );
+
+      const cryptoData = response.data.map((coin) => ({
+        id: coin.id,
+        symbol: coin.symbol.toUpperCase(),
+        name: coin.name,
+        image: coin.image,
+        current_price: coin.current_price,
+        market_cap: coin.market_cap,
+        price_change_24h: coin.price_change_percentage_24h,
+        last_updated: coin.last_updated,
+      }));
+
+      setCryptoData(cryptoData);
     } catch (error) {
       console.error('Error fetching crypto rates:', error);
-      setError(error.response?.data?.message || 'Error fetching crypto rates. Please try again later.');
+      setError('Error fetching crypto rates. Please try again later.');
     } finally {
       setLoading(false);
     }

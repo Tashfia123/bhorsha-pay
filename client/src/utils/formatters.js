@@ -241,4 +241,43 @@ export const formatEth = (value, decimals = 4) => {
   if (value === null || value === undefined) return '0 ETH';
   
   return `${parseFloat(value).toFixed(decimals)} ETH`;
+};
+
+/**
+ * Converts ETH to BDT using a fixed exchange rate
+ * @param {number|string} ethAmount - The amount in ETH
+ * @param {number} exchangeRate - ETH to BDT exchange rate (default: 350000)
+ * @returns {number} - Amount in BDT
+ */
+export const ethToBdt = (ethAmount, exchangeRate = 350000) => {
+  if (ethAmount === null || ethAmount === undefined) return 0;
+  
+  return parseFloat(ethAmount) * exchangeRate;
+};
+
+/**
+ * Converts BDT to ETH using a fixed exchange rate
+ * @param {number|string} bdtAmount - The amount in BDT
+ * @param {number} exchangeRate - ETH to BDT exchange rate (default: 350000)
+ * @returns {number} - Amount in ETH
+ */
+export const bdtToEth = (bdtAmount, exchangeRate = 350000) => {
+  if (bdtAmount === null || bdtAmount === undefined) return 0;
+  
+  return parseFloat(bdtAmount) / exchangeRate;
+};
+
+/**
+ * Formats BDT currency with proper symbol
+ * @param {number|string} amount - The amount in BDT
+ * @param {number} decimals - Number of decimal places (default: 2)
+ * @returns {string} - Formatted BDT value
+ */
+export const formatBdt = (amount, decimals = 2) => {
+  if (amount === null || amount === undefined) return '৳0.00';
+  
+  return `৳${parseFloat(amount).toLocaleString('en-US', {
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals
+  })}`;
 }; 

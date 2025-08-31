@@ -1,4 +1,4 @@
-# Bhorosha-Pay (ভরসা-প) 🌊
+# Bhorosha-Pay (ভরসা-পে)
 ### A Hybrid Blockchain Crowdfunding Platform for Disaster Relief
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
